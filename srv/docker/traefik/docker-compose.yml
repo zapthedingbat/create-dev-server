@@ -1,0 +1,48 @@
+version: "3.3"
+services:
+  traefik:
+    image: traefik:v2.0.2
+    command:
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-public"
+      - "--entrypoints.http.address=:80"
+      - "--entrypoints.https.address=:443"
+      - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencryptresolver.acme.httpchallenge.entrypoint=http"
+      - "--certificatesresolvers.letsencryptresolver.acme.email=admin@zapthedingbat.com"
+      - "--certificatesresolvers.letsencryptresolver.acme.storage=/letsencrypt/acme.json"
+      - "--api=true"
+      - "--api.dashboard=true"
+      - "--log.level=DEBUG"
+      - "--accesslog"
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - traefik-certificates:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - traefik-public
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.api.rule=Host(`traefik.server1.zapthedingbat.com`)"
+        - "traefik.http.routers.api.service=api@internal"
+        - "traefik.http.routers.api.tls.certresolver=letsencryptresolver"
+        # Placeholder port needs to be defined for docker swarm but is not used.
+        - "traefik.http.services.placeholder.loadbalancer.server.port=1234"
+        - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+        - "traefik.http.routers.http-catchall.entrypoints=http"
+        - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
+        - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+volumes:
+  traefik-certificates:
+networks:
+  traefik-public:
+    external: true
