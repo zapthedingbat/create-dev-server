@@ -115,7 +115,7 @@ docker swarm init
 
 #### DNS
 
-YOu might want to setup up a wildcard DNS record on a public domain or sub
+You might want to setup up a wildcard DNS record on a public domain or sub
 domain that you own pointing to the public IP address of your server. e.g
 `*.example.com` or `*.myserver.example.com`.
 
