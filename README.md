@@ -1,72 +1,27 @@
-# Server Configuration
-
-Development server configuration
+# Create Development Server
 
 This repository is a reference for setting up a basic development server running
-Docker swarm on CentOS
+Docker swarm on CentOS. It can be used to quickly deploy containerised projects
+for tools, development and testing.
+
+> **This configuration is not intended to run, consumer facing, production
+> systems.** If you want to run production systems you might want to consider
+> Kubernetes as a managed service like
+> [GKE](https://cloud.google.com/kubernetes-engine/),
+> [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/) or
+> [EKS](https://aws.amazon.com/eks/)
 
 ## Host
 
-The host machine will run the docker engine in swarm mode
+The host machine will run the docker engine in swarm mode. This can be a
+virtualised or physical server. Add an `automation` user with SSH access and
+`sudo` permissions.
 
-### Setup Steps
+- [Bare Metal](./docs/bare-metal-host.md)
+- [EC2 Instance](./docs/ec2-host.md)
+- [Hyper-V](./docs/hyper-v-host.md)
 
-- [Download](https://www.centos.org/download/) and install CentOS
-  - Select minimal software installation options. Don't install UI features.
-  - Set a strong root password and record it securly.
-  - Restart after installation.  
-    `# shutdown now`
-- Login as root and create an `automation` user in the group `wheel`. Set a
-  secure password for the automation user and record it securly.
-
-  ```
-  adduser automation
-  passwd automation
-  usermod -aG wheel automation
-  ```
-
-### SSH access
-
-- On a client machine create a keypair for the automation user and copy it to
-  the server. Record the private key securly, so it can be used in future by a
-  CI server to access the server remotely.
-
-  ```
-  ssh-keygen -q -t RSA -N '' -f ~/.ssh/id_rsa_automation
-  ssh-copy-id -i ~/.ssh/id_rsa_automation automation@${server_hostname}
-  ```
-
-- Connect to the server as the `automation` user using SSH.
-  ```
-  ssh automation@<Your server hostname/IP address>
-  ```
-- Update the sshd coniguration to only allow ssh connections using public key
-  authentication.  
-  Run `sudo vi /etc/ssh/sshd_config` and update the following values.
-
-  ```
-  PermitRootLogin no
-  ```
-
-  ```
-  PubkeyAuthentication yes
-  ```
-
-  ```
-  PasswordAuthentication no
-  ```
-
-  ```
-  ChallengeResponseAuthentication no
-  ```
-
-- Reload ssh server configuration
-
-  ```
-  sudo systemctl reload sshd
-  ```
-
-### Docker swarm
+## Docker Engine
 
 Install Docker engine community edition on the server.
 
@@ -119,8 +74,21 @@ You might want to setup up a wildcard DNS record on a public domain or sub
 domain that you own pointing to the public IP address of your server. e.g
 `*.example.com` or `*.myserver.example.com`.
 
-#### Firewalls / port forwarding
+## CI
 
-Ensure ports 80 and 443 are forwarded to new server's external IP address so it
-can serve traffic to the public internet. You might also want ot open up other
-ports like 22 for SSH access from the internet.
+The CI server uses the `automation` user to connect to the server and apply our
+docker configuration using terraform. The configuration that's used to connect
+to the server is configured in [terraform.tfvars](./terraform/terraform.tfvars)
+
+```
+docker_ssh_user = "automation"
+docker_ssh_host = "example.com"
+docker_ssh_port = 22
+```
+
+### Terraform
+
+Terraform writes the state data to
+[a remote data store](https://www.terraform.io/docs/state/remote.html) so that
+it can be persisted in a central location. For this we need a
+"[backend](https://www.terraform.io/docs/backends/)"
