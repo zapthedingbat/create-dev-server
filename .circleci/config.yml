@@ -12,7 +12,7 @@ jobs:
             terraform init \
               -input=false \
               -force-copy \
-              -backend-config="organization=${terraform_backend_token}" \
+              -backend-config="token=${terraform_backend_token}" \
               -backend-config="organization=${terraform_backend_organisation}" \
               ./terraform
             terraform plan -input=false -no-color -out tfplan -var-file ./terraform/terraform.tfvars ./terraform
