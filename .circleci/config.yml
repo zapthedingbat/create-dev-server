@@ -14,6 +14,6 @@ jobs:
               -force-copy \
               -backend-config="organization=${terraform_backend_token}" \
               -backend-config="organization=${terraform_backend_organisation}" \
-              ./terraform
-            terraform plan -input=false -no-color -out tfplan -var-file ./terraform/terraform.tfvars ./terraform
+              ./terraform/
+            terraform plan -input=false -no-color -out tfplan -var-file ./terraform/terraform.tfvars ./terraform/
             terraform apply -input=false tfplan
