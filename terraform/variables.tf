@@ -1,5 +1,11 @@
+variable "region" {
+  type    = string
+  default = "eu-west-1"
+}
+
 variable "docker_ssh_user" {
-  type = string
+  type    = string
+  default = "automation"
 }
 
 variable "docker_ssh_host" {
@@ -7,6 +13,5 @@ variable "docker_ssh_host" {
 }
 
 variable "docker_ssh_port" {
-  type    = string
-  default = "22"
+  default = 22
 }

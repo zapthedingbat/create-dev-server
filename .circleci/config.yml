@@ -1,0 +1,19 @@
+version: 2
+
+jobs:
+  terraform:
+    docker:
+      - image: hashicorp/terraform:0.12.18
+    steps:
+      - checkout
+      - run:
+          name: terraform
+          command: |
+            terraform init
+              -input=false \
+              -force-copy \
+              -backend-config="organization=${terraform_backend_token}" \
+              -backend-config="organization=${terraform_backend_organisation}" \
+              ./terraform
+            terraform plan -input=false -no-color -out tfplan -var-file ./terraform/terraform.tfvars ./terraform
+            terraform apply -input=false tfplan
