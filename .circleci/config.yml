@@ -15,5 +15,12 @@ jobs:
               -backend-config="token=${terraform_backend_token}" \
               -backend-config="organization=${terraform_backend_organisation}" \
               ./terraform
-            terraform plan -input=false -no-color -out tfplan -var-file ./terraform/terraform.tfvars ./terraform
-            terraform apply -input=false tfplan
+            terraform plan \
+              -input=false \
+              -out tfplan \
+              -var-file ./terraform/terraform.tfvars \
+              -var="docker_ssh_host=${docker_ssh_host}" \
+              ./terraform
+            terraform apply \
+              -input=false \
+              tfplan
