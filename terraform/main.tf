@@ -5,7 +5,7 @@ terraform {
     # Using free terraform cloud. Sign up at https://app.terraform.io/
     hostname = "app.terraform.io"
     workspaces {
-      prefix = "dev-server-"
+      name = "dev-server"
     }
   }
 }
