@@ -6,6 +6,7 @@ jobs:
       - image: hashicorp/terraform:0.12.18
     steps:
       - checkout
+      - add_ssh_keys
       - run:
           name: terraform
           command: |
