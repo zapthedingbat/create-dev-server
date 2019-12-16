@@ -8,6 +8,9 @@ jobs:
       - checkout
       - add_ssh_keys
       - run:
+          name: Keyscan
+          command: ssh-keyscan -H ${docker_ssh_host} >> ~/.ssh/known_hosts
+      - run:
           name: terraform
           command: |
             terraform init \
