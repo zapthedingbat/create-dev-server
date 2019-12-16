@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  terraform:
+  build:
     docker:
       - image: hashicorp/terraform:0.12.18
     steps:
