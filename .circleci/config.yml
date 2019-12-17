@@ -2,7 +2,6 @@ version: 2
 
 jobs:
   build:
-    context: dev-server
     docker:
       - image: hashicorp/terraform:0.12.18
     steps:
@@ -31,3 +30,9 @@ jobs:
             terraform apply \
               -input=false \
               tfplan
+
+workflows:
+  build:
+    jobs:
+      - build:
+          context: dev-server
