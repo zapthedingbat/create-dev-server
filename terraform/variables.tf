@@ -13,5 +13,10 @@ variable "docker_ssh_host" {
 }
 
 variable "docker_ssh_port" {
+  type    = number
   default = 22
+}
+
+variable "domain" {
+  type = string
 }

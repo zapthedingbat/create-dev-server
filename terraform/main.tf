@@ -1,3 +1,7 @@
+provider "docker" {
+  host = "ssh://${var.docker_ssh_user}@${var.docker_ssh_host}:${var.docker_ssh_port}"
+}
+
 terraform {
   # Use partial configuration for S3 backend
   # https://www.terraform.io/docs/backends/config.html#partial-configuration
@@ -8,4 +12,10 @@ terraform {
       name = "dev-server"
     }
   }
+}
+
+module "services" {
+  source = "./services"
+
+  domain = var.domain
 }
