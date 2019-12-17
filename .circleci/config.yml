@@ -23,9 +23,9 @@ jobs:
             terraform plan \
               -input=false \
               -out tfplan \
-              -var-file ./terraform/terraform.tfvars \
               -var="docker_ssh_host=${docker_ssh_host}" \
               -var="docker_ssh_port=${docker_ssh_port}" \
+              -var="domain=${DOMAIN}" \
               ./terraform
             terraform apply \
               -input=false \
