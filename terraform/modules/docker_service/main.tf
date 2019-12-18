@@ -32,6 +32,7 @@ resource "docker_service" "docker_service" {
       }
     }
 
+    labels   = merge(var.labels, local.base_lables)
     networks = ["${var.network_id}"]
   }
 
@@ -39,7 +40,8 @@ resource "docker_service" "docker_service" {
     dynamic "ports" {
       for_each = var.ports
       content {
-        target_port = ports.value
+        target_port    = ports.value
+        published_port = ports.value
       }
     }
   }
