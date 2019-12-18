@@ -25,3 +25,25 @@ variable "ports" {
 
   default = []
 }
+
+variable "command" {
+  type = list(string)
+}
+
+variable "args" {
+  type = list(string)
+}
+
+variable "network_id" {
+  type = string
+}
+
+variable "mounts" {
+  type = list(object({
+    target = string
+    source = string
+    type   = string
+  }))
+
+  default = []
+}
