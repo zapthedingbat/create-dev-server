@@ -20,11 +20,8 @@ resource "docker_service" "docker_service" {
   task_spec {
     container_spec {
       image   = var.image
-      labels  = merge(var.labels, local.base_lables)
       args    = var.args
       command = var.command
-
-
       dynamic "mounts" {
         for_each = var.mounts
         content {
