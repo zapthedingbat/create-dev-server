@@ -21,13 +21,9 @@ resource "docker_service" "docker_service" {
     container_spec {
       image   = var.image
       labels  = merge(var.labels, local.base_lables)
-      command = var.command
       args    = var.args
+      command = var.command
 
-      # mounts {
-      #   target = "/tmp"
-      #   type   = "volume"
-      # }
 
       dynamic "mounts" {
         for_each = var.mounts
@@ -37,8 +33,8 @@ resource "docker_service" "docker_service" {
           type   = lookup(mounts.value, "type", null)
         }
       }
-
     }
+
     networks = ["${var.network_id}"]
   }
 

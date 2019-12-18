@@ -17,8 +17,7 @@ module "service" {
     "traefik.http.routers.http-catchall.rule"                          = "hostregexp(`{host:.+}`)"
     "traefik.http.services.placeholder.loadbalancer.server.port"       = "1234"
   }
-  ports   = [80, 443]
-  command = [""]
+  ports = [80, 443]
   args = [
     "--providers.docker.endpoint=unix:///var/run/docker.sock",
     "--providers.docker.swarmMode=true",

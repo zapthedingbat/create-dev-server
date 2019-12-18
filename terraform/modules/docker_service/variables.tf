@@ -28,6 +28,8 @@ variable "ports" {
 
 variable "command" {
   type = list(string)
+
+  default = null
 }
 
 variable "args" {
