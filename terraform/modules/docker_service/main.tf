@@ -34,7 +34,7 @@ resource "docker_service" "docker_service" {
       }
     }
 
-    networks = ["ingress", "${var.network_id}"]
+    networks = ["${var.network_id}"]
   }
 
   endpoint_spec {
