@@ -27,6 +27,7 @@ jobs:
               -var="docker_ssh_port=${docker_ssh_port}" \
               -var="domain=${DOMAIN}" \
               -var="portainer_admin_password_hash=${portainer_admin_password_hash}" \
+              -var="gandi_token=${gandi_token}" \
               ./terraform
             terraform apply \
               -input=false \
