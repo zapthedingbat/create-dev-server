@@ -42,6 +42,12 @@ variable "network_id" {
   type = string
 }
 
+variable "env" {
+  type = map(any)
+
+  default = null
+}
+
 variable "mounts" {
   type = list(object({
     target = string

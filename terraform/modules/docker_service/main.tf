@@ -20,6 +20,7 @@ resource "docker_service" "docker_service" {
       image   = var.image
       args    = var.args
       command = var.command
+      env     = var.env
       dynamic "mounts" {
         for_each = var.mounts
         content {
