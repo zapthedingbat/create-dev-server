@@ -26,7 +26,7 @@ jobs:
               -var="docker_ssh_host=${docker_ssh_host}" \
               -var="docker_ssh_port=${docker_ssh_port}" \
               -var="domain=${DOMAIN}" \
-              -var="portainer_admin_password_hash=${portainer_admin_password_hash}"
+              -var="portainer_admin_password_hash=${portainer_admin_password_hash}" \
               ./terraform
             terraform apply \
               -input=false \
