@@ -34,6 +34,8 @@ variable "command" {
 
 variable "args" {
   type = list(string)
+
+  default = null
 }
 
 variable "network_id" {
