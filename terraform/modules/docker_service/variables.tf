@@ -51,3 +51,12 @@ variable "mounts" {
 
   default = []
 }
+
+variable "configs" {
+  type = list(object({
+    config_id = string
+    file_name = string
+  }))
+
+  default = []
+}

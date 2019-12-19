@@ -9,3 +9,7 @@ variable "network_id" {
 variable "network_name" {
   type = string
 }
+
+variable "admin_password_hash" {
+  type = string
+}

@@ -10,10 +10,6 @@ locals {
   }
 }
 
-resource "docker_volume" "docker_volume" {
-  name = var.dns-name
-}
-
 resource "docker_service" "docker_service" {
   name = var.dns-name
 
@@ -30,6 +26,13 @@ resource "docker_service" "docker_service" {
           target = mounts.value.target
           source = lookup(mounts.value, "source", null)
           type   = lookup(mounts.value, "type", null)
+        }
+      }
+      dynamic "configs" {
+        for_each = var.configs
+        content {
+          config_id = configs.value.config_id
+          file_name = configs.value.file_name
         }
       }
     }
