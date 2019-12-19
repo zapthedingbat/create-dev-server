@@ -14,7 +14,8 @@ module "service" {
     "--admin-password=${var.admin_password_hash}",
     "--no-analytics",
     "--no-snapshot",
-    "--host", "unix:///var/run/docker.sock"
+    "--host", "unix:///var/run/docker.sock",
+    "--templates", "https://raw.githubusercontent.com/zapthedingbat/create-dev-server/master/templates/templates.json"
   ]
   mounts = [
     {
