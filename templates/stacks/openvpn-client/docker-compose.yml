@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  vpn:
+    image: dperson/openvpn-client
+    cap_add:
+      - net_admin
+    networks:
+      - vpn
+    read_only: true
+    tmpfs:
+      - /run
+      - /tmp
+    restart: unless-stopped
+    security_opt:
+      - label:disable
+    stdin_open: true
+    tty: true
+    volumes:
+      - /dev/net:/dev/net:z
+    command: '${SERVER};${USER};${PASSWORD}'
+    deploy:
+      replicas: 1
+
+networks:
+  vpn:
+    external: true

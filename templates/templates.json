@@ -48,5 +48,35 @@
         "description": "Root domain to serve the site on."
       }
     ]
+  },
+  {
+    "type": 1,
+    "title": "OpenVPN Client",
+    "description": "OpenVPN Client",
+    "note": "Deploys an Open VPN client that can be used by other services.",
+    "categories": ["Network", "Media"],
+    "platform": "linux",
+    "logo": "https://cdn.worldvectorlogo.com/logos/openvpn-logo-1.svg",
+    "repository": {
+      "url": "https://github.com/zapthedingbat/create-dev-server",
+      "stackfile": "templates/stacks/openvpn-client/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "SERVER",
+        "label": "VPN Server",
+        "description": "Host name of the VPN server."
+      },
+      {
+        "name": "USER",
+        "label": "VPN User",
+        "description": "Username to authenticate the with the VPN server."
+      },
+      {
+        "name": "PASSWORD",
+        "label": "VPN Password",
+        "description": "Password to authenticate the with the VPN server."
+      }
+    ]
   }
 ]
