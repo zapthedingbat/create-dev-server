@@ -12,11 +12,11 @@ module "traefik" {
   network_id   = docker_network.public_network.id
 }
 
-# module "portainer" {
-#   source = "./portainer"
+module "portainer" {
+  source = "./portainer"
 
-#   admin_password_hash = var.portainer_admin_password_hash
-#   domain              = var.domain
-#   network_name        = docker_network.public_network.name
-#   network_id          = docker_network.public_network.id
-# }
+  admin_password_hash = var.portainer_admin_password_hash
+  domain              = var.domain
+  network_name        = docker_network.public_network.name
+  network_id          = docker_network.public_network.id
+}
