@@ -6,7 +6,7 @@
     "note": "Deploys a Wordpress instance connected to a MySQL database.",
     "categories": ["CMS"],
     "platform": "linux",
-    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+    "logo": "https://cdn.worldvectorlogo.com/logos/wordpress.svg",
     "repository": {
       "url": "https://github.com/zapthedingbat/create-dev-server",
       "stackfile": "templates/stacks/wordpress/docker-compose.yml"
@@ -17,6 +17,31 @@
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
       },
+      {
+        "name": "dns-name",
+        "label": "Sub domain",
+        "description": "Subdomain domain to serve the site on."
+      },
+      {
+        "name": "domain",
+        "label": "Domain",
+        "description": "Root domain to serve the site on."
+      }
+    ]
+  },
+  {
+    "type": 2,
+    "title": "Plex",
+    "description": "Plex media server",
+    "note": "Deploys a plex media server instance.",
+    "categories": ["Media"],
+    "platform": "linux",
+    "logo": "https://cdn.worldvectorlogo.com/logos/plex.svg",
+    "repository": {
+      "url": "https://github.com/zapthedingbat/create-dev-server",
+      "stackfile": "templates/stacks/plex/docker-compose.yml"
+    },
+    "env": [
       {
         "name": "dns-name",
         "label": "Sub domain",
