@@ -7,7 +7,6 @@ services:
       - public-network
     ports:
       - "32400:32400"
-    restart: always
     volumes:
       - plex_config:/config
       - media_downloads:/downloads
@@ -27,5 +26,5 @@ networks:
     external: true
     
 volumes:
-  - plex_config
-  - media_downloads
+  plex_config:
+  media_downloads:
