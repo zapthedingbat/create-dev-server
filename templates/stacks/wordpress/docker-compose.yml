@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   db:
@@ -38,7 +38,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.${dns-name}.entrypointshttps"
       - "traefik.http.routers.${dns-name}.ruleHost(`${dns-name}.${domain}`)"
-      - "traefik.http.routers.${dns-name}.tls.certresolverle-dns"
+      - "traefik.http.routers.${dns-name}.tls.certresolver=le-dns"
       - "traefik.http.routers.${dns-name}.tls.domains[0].main=${domain}"
       - "traefik.http.routers.${dns-name}.tls.domains[0].sans=*.${domain}"
       - "traefik.http.services.${dns-name}.loadbalancer.server.port=80"
