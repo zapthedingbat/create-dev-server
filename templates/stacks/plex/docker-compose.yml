@@ -15,10 +15,10 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.plex.entrypoints=https"
-        - "traefik.http.routers.plex.rule=Host(`plex.${domain}`)"
+        - "traefik.http.routers.plex.rule=Host(`plex.${DOMAIN}`)"
         - "traefik.http.routers.plex.tls.certresolver=le-dns"
-        - "traefik.http.routers.plex.tls.domains[0].main=${domain}"
-        - "traefik.http.routers.plex.tls.domains[0].sans=*.${domain}"
+        - "traefik.http.routers.plex.tls.domains[0].main=${DOMAIN}"
+        - "traefik.http.routers.plex.tls.domains[0].sans=*.${DOMAIN}"
         - "traefik.http.services.plex.loadbalancer.server.port=32400"
 
 networks:

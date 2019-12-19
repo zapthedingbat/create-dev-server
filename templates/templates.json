@@ -18,12 +18,12 @@
         "description": "Password used by the MySQL root user."
       },
       {
-        "name": "dns-name",
+        "name": "DNS_NAME",
         "label": "Sub domain",
         "description": "Subdomain domain to serve the site on."
       },
       {
-        "name": "domain",
+        "name": "DOMAIN",
         "label": "Domain",
         "description": "Root domain to serve the site on."
       }
@@ -43,12 +43,7 @@
     },
     "env": [
       {
-        "name": "dns-name",
-        "label": "Sub domain",
-        "description": "Subdomain domain to serve the site on."
-      },
-      {
-        "name": "domain",
+        "name": "DOMAIN",
         "label": "Domain",
         "description": "Root domain to serve the site on."
       }

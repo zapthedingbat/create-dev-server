@@ -35,12 +35,12 @@ services:
         order: start-first
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.${dns-name}.entrypoints=https"
-        - "traefik.http.routers.${dns-name}.rule=Host(`${dns-name}.${domain}`)"
-        - "traefik.http.routers.${dns-name}.tls.certresolver=le-dns"
-        - "traefik.http.routers.${dns-name}.tls.domains[0].main=${domain}"
-        - "traefik.http.routers.${dns-name}.tls.domains[0].sans=*.${domain}"
-        - "traefik.http.services.${dns-name}.loadbalancer.server.port=80"
+        - "traefik.http.routers.${DNS_NAME}.entrypoints=https"
+        - "traefik.http.routers.${DNS_NAME}.rule=Host(`${DNS_NAME}.${DOMAIN}`)"
+        - "traefik.http.routers.${DNS_NAME}.tls.certresolver=le-dns"
+        - "traefik.http.routers.${DNS_NAME}.tls.domains[0].main=${DOMAIN}"
+        - "traefik.http.routers.${DNS_NAME}.tls.domains[0].sans=*.${DOMAIN}"
+        - "traefik.http.services.${DNS_NAME}.loadbalancer.server.port=80"
 
 networks:
   wordpress:
