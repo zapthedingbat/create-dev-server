@@ -1,6 +1,6 @@
-# resource "docker_volume" "portainer" {
-#   name = "portainer"
-# }
+resource "docker_volume" "portainer" {
+  name = "portainer"
+}
 
 module "service" {
   source     = "../../modules/docker_service"
@@ -22,10 +22,10 @@ module "service" {
       source = "/var/run/docker.sock"
       type   = "bind"
     },
-    # {
-    #   target = "/data"
-    #   source = "${docker_volume.portainer.name}"
-    #   type   = "volume"
-    # }
+    {
+      target = "/data"
+      source = "${docker_volume.portainer.name}"
+      type   = "volume"
+    }
   ]
 }
