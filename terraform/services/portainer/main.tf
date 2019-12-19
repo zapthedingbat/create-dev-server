@@ -12,7 +12,7 @@ module "service" {
   ports      = [9000]
   args = [
     "-H",
-    "unix://var/run/docker.sock",
+    "unix:///var/run/docker.sock",
     "--admin-password=${var.admin_password_hash}",
     "--no-analytics",
     "--no-snapshot"
