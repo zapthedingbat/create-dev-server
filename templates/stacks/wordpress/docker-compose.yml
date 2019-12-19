@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    networks:
+      - wordpress
+    volumes:
+      - wordpress_db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    deploy:
+      replicas: 1
+
+  wordpress:
+    image: wordpress:latest
+    networks:
+      - public-network
+      - wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    depends_on:
+      - db
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+    labels:
+      "traefik.enable=true"
+      "traefik.http.routers.${dns-name}.entrypointshttps"
+      "traefik.http.routers.${dns-name}.ruleHost(`${dns-name}.${domain}`)"
+      "traefik.http.routers.${dns-name}.tls.certresolverle-dns"
+      "traefik.http.routers.${dns-name}.tls.domains[0].main=${domain}"
+      "traefik.http.routers.${dns-name}.tls.domains[0].sans=*.${domain}"
+      "traefik.http.services.${dns-name}.loadbalancer.server.port=80"
+
+networks:
+  wordpress:
+  public-network:
+    external: true
+    
+volumes:
+  wordpress_db:

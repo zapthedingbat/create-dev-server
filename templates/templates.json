@@ -1,0 +1,32 @@
+[
+  {
+    "type": 3,
+    "title": "Wordpress",
+    "description": "Wordpress setup with a MySQL database",
+    "note": "Deploys a Wordpress instance connected to a MySQL database.",
+    "categories": ["CMS"],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+    "repository": {
+      "url": "https://github.com/zapthedingbat/create-dev-server",
+      "stackfile": "stacks/wordpress/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      },
+      {
+        "name": "dns-name",
+        "label": "Sub domain",
+        "description": "Subdomain domain to serve the site on."
+      },
+      {
+        "name": "domain",
+        "label": "Domain",
+        "description": "Root domain to serve the site on."
+      }
+    ]
+  }
+]
