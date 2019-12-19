@@ -33,6 +33,9 @@ module "service" {
     "--api.dashboard=true",
     "--log.level=WARN"
   ]
+  env = {
+    GANDIV5_API_KEY: "${var.gandi_token}"
+  }
   mounts = [
     {
       target = "/var/run/docker.sock"

@@ -18,5 +18,6 @@ module "services" {
   source = "./services"
 
   domain                        = var.domain
+  gandi_token                   = var.gandi_token
   portainer_admin_password_hash = var.portainer_admin_password_hash
 }

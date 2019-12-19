@@ -8,6 +8,7 @@ module "traefik" {
   source = "./traefik"
 
   domain       = var.domain
+  gandi_token  = var.gandi_token
   network_name = docker_network.public_network.name
   network_id   = docker_network.public_network.id
 }
