@@ -10,13 +10,13 @@ services:
     restart: always
     volumes:
       - plex_config:/config
-      - /mnt/nfs/storage/downloads:/downloads
+      - media_downloads:/downloads
     deploy:
       replicas: 1
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.plex.entrypointshttps"
-        - "traefik.http.routers.plex.ruleHost(`plex.${domain}`)"
+        - "traefik.http.routers.plex.entrypoints=https"
+        - "traefik.http.routers.plex.rule=Host(`plex.${domain}`)"
         - "traefik.http.routers.plex.tls.certresolver=le-dns"
         - "traefik.http.routers.plex.tls.domains[0].main=${domain}"
         - "traefik.http.routers.plex.tls.domains[0].sans=*.${domain}"
@@ -28,3 +28,4 @@ networks:
     
 volumes:
   - plex_config
+  - media_downloads
