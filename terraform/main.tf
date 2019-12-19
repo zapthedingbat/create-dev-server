@@ -17,5 +17,6 @@ terraform {
 module "services" {
   source = "./services"
 
-  domain = var.domain
+  domain                        = var.domain
+  portainer_admin_password_hash = var.portainer_admin_password_hash
 }
