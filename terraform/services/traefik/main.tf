@@ -7,7 +7,7 @@ module "service" {
   network_id = var.network_id
   dns-name   = "traefik"
   domain     = var.domain
-  image      = "traefik:v2.1.1"
+  image      = "traefik:v2.3"
   port       = 80
   labels = {
     "traefik.http.routers.traefik.service"                             = "api@internal"
