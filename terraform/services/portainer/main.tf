@@ -4,7 +4,7 @@ resource "docker_volume" "portainer" {
 
 module "service" {
   source     = "../../modules/docker_service"
-  # network_id = var.network_id
+  network_id = var.network_id
   dns-name   = "portainer"
   domain     = var.domain
   image      = "portainer/portainer:1.24.1"

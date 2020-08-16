@@ -4,7 +4,7 @@ resource "docker_volume" "letsencrypt" {
 
 module "service" {
   source     = "../../modules/docker_service"
-  # network_id = var.network_id
+  network_id = var.network_id
   dns-name   = "traefik"
   domain     = var.domain
   image      = "traefik:v2.3"

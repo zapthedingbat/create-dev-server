@@ -38,9 +38,13 @@ variable "args" {
   default = null
 }
 
-# variable "network_id" {
-#   type = string
-# }
+variable "network_id" {
+  type = string
+}
+
+variable "network_name" {
+  type = string
+}
 
 variable "env" {
   type = map(any)
