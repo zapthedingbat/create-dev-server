@@ -38,7 +38,7 @@ resource "docker_service" "docker_service" {
       }
     }
 
-    networks = ["${var.network_id}"]
+    # networks = ["${var.network_id}"]
   }
 
   endpoint_spec {
