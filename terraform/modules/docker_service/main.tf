@@ -13,11 +13,10 @@ locals {
 resource "docker_service" "docker_service" {
   name = var.dns-name
 
-  labels = merge(var.labels, local.base_lables)
-
   task_spec {
     container_spec {
       image   = var.image
+      labels = merge(var.labels, local.base_lables)
       args    = var.args
       command = var.command
       env     = var.env
