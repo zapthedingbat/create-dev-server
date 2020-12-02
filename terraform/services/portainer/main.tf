@@ -7,7 +7,7 @@ module "service" {
   network_id = var.network_id
   dns-name   = "portainer"
   domain     = var.domain
-  image      = "portainer/portainer:2.0.0"
+  image      = "portainer/portainer-ce:2.0.0-alpine"
   port       = 9000
   ports      = [9000]
   args = [
