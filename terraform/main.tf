@@ -1,5 +1,5 @@
 provider "docker" {
-  version = "= 2.0.0"
+  version = "=2.7.2"
   host = "ssh://${var.docker_ssh_user}@${var.docker_ssh_host}:${var.docker_ssh_port}"
 }
 
