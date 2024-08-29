@@ -4,7 +4,7 @@ provider "docker" {
 }
 
 terraform {
-  required_version = ">= 0.12.18, < 0.13"
+  required_version = "< 0.16"
   # Use partial configuration for S3 backend
   # https://www.terraform.io/docs/backends/config.html#partial-configuration
   backend "remote" {
