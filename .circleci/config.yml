@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: hashicorp/terraform:0.12.18
+      - image: hashicorp/terraform:1.16.2
     steps:
       - checkout
       - add_ssh_keys
